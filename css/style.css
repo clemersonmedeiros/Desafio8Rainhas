@@ -1,0 +1,64 @@
+html,body,.container{
+  height: auto;
+  font-family: 'Roboto Condensed';
+}
+
+td{
+  user-select: none;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 3px;
+  text-align: center;
+  width: 15px;
+  height: 15px;
+}
+
+/* -- Caso o valor seja igual a zero, o sistema não deve imprimir a rainha -- */
+td[value='0'] i{
+  display: none;
+}
+
+fieldset {
+  position: relative;
+  color: #666;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  font-size: 13px;
+}
+
+fieldset legend{
+  color: #8287c5;
+  font-size: 14px;
+}
+
+.form{
+  display: inline-block;
+  min-height: 165px;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+table,td,tr{
+  border-color: #acabab;
+}
+
+/* -- Deixa avisado quais as rainhas são bloqueantes -- */
+.bloqueante{
+  color: #854d4d;
+}
+
+/* -- Pinta as células de forma xadrez -- */
+tr:nth-child(odd) td:nth-child(odd) {
+  background-color:#fff;
+}  
+tr:nth-child(odd) td:nth-child(even) {
+  background-color:#ccc;
+} 
+tr:nth-child(even) td:nth-child(odd) {
+  background-color:#ccc;
+}  
+tr:nth-child(even) td:nth-child(even) {
+   background-color:#fff;
+} 
