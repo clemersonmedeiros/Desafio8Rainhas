@@ -1,16 +1,17 @@
 html,body,.container{
   height: auto;
   font-family: 'Roboto Condensed';
+  text-align: center;
 }
 
 td{
   user-select: none;
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 20px;
   padding: 3px;
   text-align: center;
-  width: 15px;
-  height: 15px;
+  width: 30px;
+  height: 30px;
 }
 
 /* -- Caso o valor seja igual a zero, o sistema não deve imprimir a rainha -- */
@@ -24,7 +25,9 @@ fieldset {
   border: 1px solid #CCC;
   border-radius: 5px;
   height: 100%;
+  text-align: center;
   width: 100%;
+  min-width: 50%;
   font-size: 13px;
 }
 
@@ -35,30 +38,61 @@ fieldset legend{
 
 .form{
   display: inline-block;
-  min-height: 165px;
+  width: 700px;
+  height: 500px;
   padding: 0;
+ 
   margin-bottom: 20px;
 }
-
 table,td,tr{
   border-color: #acabab;
 }
+#tabuleiro{
+  display:inline-block;
+}
 
 /* -- Deixa avisado quais as rainhas são bloqueantes -- */
-.bloqueante{
+.bloqueante i{
   color: #854d4d;
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.rainhas{
+  margin-top: 15px;
+  border: 1px solid #CCC;
 }
 
 /* -- Pinta as células de forma xadrez -- */
-tr:nth-child(odd) td:nth-child(odd) {
+.xadrez tr:nth-child(odd) td:nth-child(odd) {
   background-color:#fff;
 }  
-tr:nth-child(odd) td:nth-child(even) {
+.xadrez tr:nth-child(odd) td:nth-child(even) {
   background-color:#ccc;
 } 
-tr:nth-child(even) td:nth-child(odd) {
+.xadrez tr:nth-child(even) td:nth-child(odd) {
   background-color:#ccc;
 }  
-tr:nth-child(even) td:nth-child(even) {
+.xadrez tr:nth-child(even) td:nth-child(even) {
    background-color:#fff;
 } 
+.descricao{
+  margin: 12px 0px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(1px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(3px, 0, 0);
+  }
+}

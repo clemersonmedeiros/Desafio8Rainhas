@@ -14,7 +14,13 @@ function Tabuleiro(div){
     this.bloqueantes = []; 
     this.table = document.createElement('table');
     this.table.border = "1";
+    this.table.className = 'xadrez';
     document.getElementById(div).appendChild(this.table);
+
+    this.tableList = document.createElement('table');
+    this.tableList.className = 'rainhas';
+    this.tableList.border = '1';
+    document.getElementById(div).appendChild(this.tableList);
     this.init();
 }
 
@@ -23,7 +29,12 @@ function Tabuleiro(div){
 Tabuleiro.prototype.init = function(){
     self = this; 
     // Construção da Tabela na interface
+    trRainha = document.createElement('tr');
     for (let x = 0; x < 8; x++) {
+        tdRainha = document.createElement('td');
+        tdRainha.innerHTML += ' <i class="fas fa-chess-queen"></i>';
+        tdRainha.setAttribute('value','1');
+        tdRainha.setAttribute('index',x);
         tr = document.createElement('tr');  // Constrói linha
         this.matriz.push([0,0,0,0,0,0,0,0]); // Inicializa matriz com todas as colunas
         for (let y = 0; y < 8; y++) {
@@ -47,12 +58,23 @@ Tabuleiro.prototype.init = function(){
             tr.appendChild(td);
         }
         this.table.appendChild(tr);
+        trRainha.appendChild(tdRainha);
     }
+    this.tableList.appendChild(trRainha);
 }
 
 // Adiciona ou remove a rainha do tabuleiro
 Tabuleiro.prototype.adicionarRemoverRainha = function(x,y,td){
+    
+    // Mensagem de vitória mais broxante do mundo
+    if (this.rainhas.length == 8 && this.bloqueantes.length == 0){
+        alert('Você venceu! EEeee...')
+        return;
+    }
+    
+
     permiteAdicionar = this.bloqueantes.length == 0;
+
     for (let i = 0; i < this.bloqueantes.length; i++) {
         const element = this.bloqueantes[i];
 
@@ -77,10 +99,12 @@ Tabuleiro.prototype.adicionarRemoverRainha = function(x,y,td){
                     break;
                 }
             }
+            document.querySelector('.rainhas td[value="0"]').setAttribute('value','1');
         }else{
             this.matriz[x][y] = 1;
             td.setAttribute('value',1);
             this.rainhas.push([x,y])
+            document.querySelector('.rainhas td[value="1"]').setAttribute('value','0');
         }
     }
 
@@ -89,10 +113,7 @@ Tabuleiro.prototype.adicionarRemoverRainha = function(x,y,td){
         this.analisar(element[0],element[1]);
     });
 
-    // Mensagem de vitória mais broxante do mundo
-    if (this.rainhas.length == 8 && this.bloqueantes.length == 0){
-        alert('Você venceu! EEeee...')
-    }
+    
 }
 
 Tabuleiro.prototype.analisar = function(x,y){
